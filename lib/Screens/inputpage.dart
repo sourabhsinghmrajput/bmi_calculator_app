@@ -1,7 +1,15 @@
+import 'package:bmi/widgets/mybottomcard.dart';
+import 'package:bmi/widgets/mycirclebutton.dart';
 import 'package:flutter/material.dart';
 import 'package:bmi/widgets/mycard.dart';
 import 'package:bmi/widgets/constants.dart';
 //import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+enum GenderType { male, female }
+
+int height = 180;
+int weight = 45;
+int age = 22;
 
 class InputPage extends StatefulWidget {
   const InputPage({Key? key}) : super(key: key);
@@ -13,6 +21,8 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   @override
   Widget build(BuildContext context) {
+    GenderType? selectedgender;
+
     return SafeArea(
       child: Scaffold(
         appBar: AppBar(
@@ -30,49 +40,114 @@ class _InputPageState extends State<InputPage> {
               child: Row(
                 children: [
                   Expanded(
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedgender = GenderType.male;
+                        });
+                      },
+                      child: Mycard(
+                        colour: selectedgender == GenderType.male
+                            ? kActiveCardColour
+                            : kInactiveCardColour,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.male,
+                              color: Colors.white,
+                              size: 100,
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              'MALE',
+                              style: kLableTextStyle,
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Expanded(
+                      child: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        selectedgender = GenderType.female;
+                      });
+                    },
                     child: Mycard(
-                      colour: kActiveCardColour,
+                      colour: selectedgender == GenderType.female
+                          ? kActiveCardColour
+                          : kInactiveCardColour,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Icon(
-                            Icons.male,
+                            Icons.female,
                             color: Colors.white,
                             size: 100,
                           ),
                           SizedBox(height: 10),
                           Text(
-                            'MALE',
-                            style: TextStyle(
-                                color: Colors.white70,
-                                fontSize: 18,
-                                fontWeight: FontWeight.w500),
+                            'FEMALE',
+                            style: kLableTextStyle,
                           ),
                         ],
                       ),
                     ),
-                  ),
+                  )),
+                ],
+              ),
+            ),
+            Expanded(
+              child: Row(
+                children: [
                   Expanded(
                       child: Mycard(
                     colour: kActiveCardColour,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
-                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        Icon(
-                          Icons.female,
-                          color: Colors.white,
-                          size: 100,
-                        ),
-                        SizedBox(height: 10),
                         Text(
-                          'FEMALE',
-                          style: TextStyle(
-                            color: Colors.white70,
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                          ),
+                          "HEIGHT",
+                          style: kLableTextStyle,
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.baseline,
+                          textBaseline: TextBaseline.alphabetic,
+                          children: [
+                            Text(
+                              height.toString(),
+                              style: kLableNumberTextStyle,
+                            ),
+                            SizedBox(width: 3),
+                            Text(
+                              "CM",
+                              style: TextStyle(
+                                color: Colors.white70,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 22,
+                              ),
+                            ),
+                          ],
+                        ),
+                        Slider(
+                          value: height.toDouble(),
+                          min: 120.0,
+                          max: 220.0,
+                          activeColor: kBottomContainerColour,
+                          inactiveColor: Colors.white24,
+                          onChanged: (double newValue) {
+                            setState(() {
+                              height = newValue.round();
+                            });
+                          },
                         ),
                       ],
                     ),
@@ -84,24 +159,15 @@ class _InputPageState extends State<InputPage> {
               child: Row(
                 children: [
                   Expanded(
-                    child: Mycard(
-                      colour: kActiveCardColour,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Expanded(
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Mycard(
-                      colour: kActiveCardColour,
+                    child: myBottomCard(
+                      mybcardtitle: "WEIGHT",
+                      mycval: weight,
                     ),
                   ),
                   Expanded(
-                    child: Mycard(
-                      colour: kActiveCardColour,
+                    child: myBottomCard(
+                      mybcardtitle: 'AGE',
+                      mycval: age,
                     ),
                   ),
                 ],
