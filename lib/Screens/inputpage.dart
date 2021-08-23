@@ -1,9 +1,8 @@
-import 'package:bmi/widgets/mybottomcard.dart';
 import 'package:bmi/widgets/mycirclebutton.dart';
+
 import 'package:flutter/material.dart';
 import 'package:bmi/widgets/mycard.dart';
 import 'package:bmi/widgets/constants.dart';
-//import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 enum GenderType { male, female }
 
@@ -22,20 +21,49 @@ class _InputPageState extends State<InputPage> {
   @override
   Widget build(BuildContext context) {
     GenderType? selectedgender;
+    void addweight() {
+      setState(() {
+        weight++;
+      });
+    }
+
+    void reduceweight() {
+      setState(() {
+        weight--;
+      });
+    }
+
+    void addage() {
+      setState(() {
+        age++;
+      });
+    }
+
+    void reduceage() {
+      setState(() {
+        age--;
+      });
+    }
 
     return SafeArea(
       child: Scaffold(
-        appBar: AppBar(
-          title: Text(
-            "BMI Calculator",
-            style: TextStyle(
-              letterSpacing: 0.2,
-            ),
-          ),
-          centerTitle: true,
-        ),
         body: Column(
           children: [
+            Container(
+              height: 40,
+              width: double.infinity,
+              child: Center(
+                child: Text(
+                  'BMI CALCULATOR',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 22,
+                    fontWeight: FontWeight.bold,
+                    letterSpacing: 0.4,
+                  ),
+                ),
+              ),
+            ),
             Expanded(
               child: Row(
                 children: [
@@ -159,15 +187,71 @@ class _InputPageState extends State<InputPage> {
               child: Row(
                 children: [
                   Expanded(
-                    child: myBottomCard(
-                      mybcardtitle: "WEIGHT",
-                      mycval: weight,
+                    child: Mycard(
+                      colour: kActiveCardColour,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(4),
+                            child: Text(
+                              'WEIGHT',
+                              style: kLableTextStyle,
+                            ),
+                          ),
+                          Text(
+                            '$weight',
+                            style: kLableNumberTextStyle,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              MycircleButton(
+                                myicon: Icons.remove,
+                                onTAP: reduceweight,
+                              ),
+                              MycircleButton(
+                                myicon: Icons.add,
+                                onTAP: addweight,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Expanded(
-                    child: myBottomCard(
-                      mybcardtitle: 'AGE',
-                      mycval: age,
+                    child: Mycard(
+                      colour: kActiveCardColour,
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(4.0),
+                            child: Text(
+                              'AGE',
+                              style: kLableTextStyle,
+                            ),
+                          ),
+                          Text(
+                            '$age',
+                            style: kLableNumberTextStyle,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              MycircleButton(
+                                myicon: Icons.remove,
+                                onTAP: reduceage,
+                              ),
+                              MycircleButton(
+                                myicon: Icons.add,
+                                onTAP: addage,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ],

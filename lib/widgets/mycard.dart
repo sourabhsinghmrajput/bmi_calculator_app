@@ -1,5 +1,3 @@
-
-
 import 'package:flutter/material.dart';
 
 // ignore: must_be_immutable
@@ -8,8 +6,7 @@ class Mycard extends StatelessWidget {
 
   final Color colour;
   Widget? child;
- final void Function()? onpressed;
-  
+  final void Function()? onpressed;
 
   @override
   Widget build(BuildContext context) {
@@ -18,7 +15,7 @@ class Mycard extends StatelessWidget {
       child: Container(
         height: 200.0,
         width: 170.0,
-        margin: EdgeInsets.all(13.0),
+        margin: EdgeInsets.all(11.0),
         child: child,
         decoration: BoxDecoration(
           color: colour,
