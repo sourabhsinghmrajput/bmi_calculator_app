@@ -1,4 +1,6 @@
+import 'package:bmi/Screens/result_page.dart';
 import 'package:bmi/widgets/mycirclebutton.dart';
+import 'calculation_brain.dart';
 
 import 'package:flutter/material.dart';
 import 'package:bmi/widgets/mycard.dart';
@@ -266,7 +268,18 @@ class _InputPageState extends State<InputPage> {
               padding: const EdgeInsets.only(top: 10),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, '/result');
+                  CalulateBrain calc =
+                      CalulateBrain(height: height, weight: weight);
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ResultPage(
+                        bmi: calc.calbmi(),
+                        result: calc.getresult(),
+                        interpretation: calc.getInterpretation(),
+                      ),
+                    ),
+                  );
                 },
                 child: Container(
                   height: kContainerHeight,

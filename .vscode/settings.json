@@ -1,18 +1,3 @@
 {
-  "files.exclude": {
-    "web": true,
-    "test": true,
-    "ios": true,
-    "android": true,
-    ".vscode": true,
-    ".idea": true,
-    ".dart_tool": true,
-    ".gitignore": true,
-    ".metadata": true,
-    "bmi.iml": true,
-    "pubspec.lock": true,
-    "build": true,
-    "README.md": true,
-    ".packages": true
-  }
+  "files.exclude": {}
 }

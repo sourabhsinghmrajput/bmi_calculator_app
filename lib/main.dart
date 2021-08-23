@@ -1,4 +1,3 @@
-import 'package:bmi/Screens/result_page.dart';
 import 'package:flutter/material.dart';
 import 'Screens/inputpage.dart';
 
@@ -12,17 +11,19 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'BMI Calculator By Sourabhsingh Rajput',
+      title: 'BMI Calculator By Sourabhsingh Rajput', 
+
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: Color(0xFF0A0E21),
         //accentColor: Color(0xFF24263B),
         scaffoldBackgroundColor: Color(0xFF0A0E21),
       ),
-      routes: {
-        '/': (context) => InputPage(),
-        '/result': (context) => ResultPage(),
-      },
+      home: InputPage(),
+      // routes: {
+      //   '/': (context) => InputPage(),
+      //   '/result': (context) => ResultPage(),
+      // },
     );
   }
 }

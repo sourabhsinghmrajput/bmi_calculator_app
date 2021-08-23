@@ -3,14 +3,18 @@ import 'package:bmi/widgets/mycard.dart';
 import 'package:flutter/material.dart';
 
 class ResultPage extends StatelessWidget {
-  const ResultPage({Key? key}) : super(key: key);
+  ResultPage(
+      {required this.bmi, required this.result, required this.interpretation});
 
+  final String bmi;
+  final String result;
+  final String interpretation;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly, 
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             Container(
@@ -49,30 +53,31 @@ class ResultPage extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Text(
-                        'Normal',
+                        result,
                         style: TextStyle(
                           color: Colors.greenAccent,
                           fontWeight: FontWeight.bold,
-                          fontSize: 20,
+                          fontSize: 22,
                           letterSpacing: 0.2,
                         ),
                       ),
                       Text(
-                        '18.3',
+                        bmi,
                         style: TextStyle(
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          fontSize: 65,
+                          fontSize: 70,
                         ),
                       ),
                       Padding(
                         padding: const EdgeInsets.only(bottom: 5),
                         child: Text(
-                          'Your BMI result is quiet low, you should eat more!',
+                          interpretation,
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.white,
-                            fontSize: 18,
+                            letterSpacing: 0.2,
+                            fontSize: 20,
                           ),
                         ),
                       ),
@@ -85,7 +90,7 @@ class ResultPage extends StatelessWidget {
               padding: const EdgeInsets.only(top: 10),
               child: GestureDetector(
                 onTap: () {
-                  Navigator.pushNamed(context, '/');
+                  Navigator.pop(context);
                 },
                 child: Container(
                   height: kContainerHeight,
