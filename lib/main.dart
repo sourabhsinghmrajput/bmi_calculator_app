@@ -1,6 +1,6 @@
+import 'package:bmi/Screens/result_page.dart';
 import 'package:flutter/material.dart';
 import 'Screens/inputpage.dart';
-
 
 void main() {
   runApp(MyApp());
@@ -19,7 +19,10 @@ class MyApp extends StatelessWidget {
         //accentColor: Color(0xFF24263B),
         scaffoldBackgroundColor: Color(0xFF0A0E21),
       ),
-      home: InputPage(),
+      routes: {
+        '/': (context) => InputPage(),
+        '/result': (context) => ResultPage(),
+      },
     );
   }
 }

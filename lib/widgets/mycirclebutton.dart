@@ -18,6 +18,7 @@ class _MycircleButtonState extends State<MycircleButton> {
       child: RawMaterialButton(
         fillColor: Color(0xFF4C4F5E),
         shape: CircleBorder(),
+        elevation: 10,
         constraints: BoxConstraints.tightFor(
           height: 56,
           width: 56,

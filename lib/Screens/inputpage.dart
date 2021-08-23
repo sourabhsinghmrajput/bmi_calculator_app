@@ -72,7 +72,6 @@ class _InputPageState extends State<InputPage> {
                       onTap: () {
                         setState(() {
                           selectedgender = GenderType.male;
-                          print("male tapped");
                         });
                       },
                       child: Mycard(
@@ -90,7 +89,7 @@ class _InputPageState extends State<InputPage> {
                                   : Colors.white),
                               size: 100,
                             ),
-                            SizedBox(height: 10),
+                            SizedBox(height: 6),
                             Text(
                               'MALE',
                               style: kLableTextStyle,
@@ -105,7 +104,6 @@ class _InputPageState extends State<InputPage> {
                       onTap: () {
                         setState(() {
                           selectedgender = GenderType.female;
-                          print("female tapped");
                         });
                       },
                       child: Mycard(
@@ -266,23 +264,28 @@ class _InputPageState extends State<InputPage> {
             ),
             Padding(
               padding: const EdgeInsets.only(top: 10),
-              child: Container(
-                height: kContainerHeight,
-                width: double.infinity,
-                child: Center(
-                  child: Text(
-                    "CALCULATE",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.w600,
-                      letterSpacing: 0.5,
-                      fontSize: 28,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/result');
+                },
+                child: Container(
+                  height: kContainerHeight,
+                  width: double.infinity,
+                  child: Center(
+                    child: Text(
+                      "CALCULATE",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        letterSpacing: 0.5,
+                        fontSize: 28,
+                      ),
                     ),
                   ),
-                ),
-                decoration: BoxDecoration(
-                  color: kBottomContainerColour,
-                  //color: Color(0xFFE83D66),
+                  decoration: BoxDecoration(
+                    color: kBottomContainerColour,
+                    //color: Color(0xFFE83D66),
+                  ),
                 ),
               ),
             ),
