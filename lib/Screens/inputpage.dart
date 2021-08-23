@@ -9,6 +9,7 @@ enum GenderType { male, female }
 int height = 180;
 int weight = 45;
 int age = 22;
+GenderType? selectedgender;
 
 class InputPage extends StatefulWidget {
   const InputPage({Key? key}) : super(key: key);
@@ -20,7 +21,6 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   @override
   Widget build(BuildContext context) {
-    GenderType? selectedgender;
     void addweight() {
       setState(() {
         weight++;
@@ -72,19 +72,22 @@ class _InputPageState extends State<InputPage> {
                       onTap: () {
                         setState(() {
                           selectedgender = GenderType.male;
+                          print("male tapped");
                         });
                       },
                       child: Mycard(
-                        colour: selectedgender == GenderType.male
+                        colour: (selectedgender == GenderType.male
                             ? kActiveCardColour
-                            : kInactiveCardColour,
+                            : kInactiveCardColour),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Icon(
                               Icons.male,
-                              color: Colors.white,
+                              color: (selectedgender == GenderType.male
+                                  ? Colors.blue
+                                  : Colors.white),
                               size: 100,
                             ),
                             SizedBox(height: 10),
@@ -98,34 +101,38 @@ class _InputPageState extends State<InputPage> {
                     ),
                   ),
                   Expanded(
-                      child: GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        selectedgender = GenderType.female;
-                      });
-                    },
-                    child: Mycard(
-                      colour: selectedgender == GenderType.female
-                          ? kActiveCardColour
-                          : kInactiveCardColour,
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.female,
-                            color: Colors.white,
-                            size: 100,
-                          ),
-                          SizedBox(height: 10),
-                          Text(
-                            'FEMALE',
-                            style: kLableTextStyle,
-                          ),
-                        ],
+                    child: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          selectedgender = GenderType.female;
+                          print("female tapped");
+                        });
+                      },
+                      child: Mycard(
+                        colour: (selectedgender == GenderType.female
+                            ? kActiveCardColour
+                            : kInactiveCardColour),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.female,
+                              color: (selectedgender == GenderType.female
+                                  ? Colors.pink
+                                  : Colors.white),
+                              size: 100,
+                            ),
+                            SizedBox(height: 10),
+                            Text(
+                              'FEMALE',
+                              style: kLableTextStyle,
+                            ),
+                          ],
+                        ),
                       ),
                     ),
-                  )),
+                  ),
                 ],
               ),
             ),
@@ -134,7 +141,7 @@ class _InputPageState extends State<InputPage> {
                 children: [
                   Expanded(
                       child: Mycard(
-                    colour: kActiveCardColour,
+                    colour: kInactiveCardColour,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
@@ -188,7 +195,7 @@ class _InputPageState extends State<InputPage> {
                 children: [
                   Expanded(
                     child: Mycard(
-                      colour: kActiveCardColour,
+                      colour: kInactiveCardColour,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -222,7 +229,7 @@ class _InputPageState extends State<InputPage> {
                   ),
                   Expanded(
                     child: Mycard(
-                      colour: kActiveCardColour,
+                      colour: kInactiveCardColour,
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -257,23 +264,26 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             ),
-            Container(
-              height: kContainerHeight,
-              width: double.infinity,
-              child: Center(
-                child: Text(
-                  "CALCULATE",
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                    letterSpacing: 0.5,
-                    fontSize: 28,
+            Padding(
+              padding: const EdgeInsets.only(top: 10),
+              child: Container(
+                height: kContainerHeight,
+                width: double.infinity,
+                child: Center(
+                  child: Text(
+                    "CALCULATE",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.w600,
+                      letterSpacing: 0.5,
+                      fontSize: 28,
+                    ),
                   ),
                 ),
-              ),
-              decoration: BoxDecoration(
-                color: kBottomContainerColour,
-                //color: Color(0xFFE83D66),
+                decoration: BoxDecoration(
+                  color: kBottomContainerColour,
+                  //color: Color(0xFFE83D66),
+                ),
               ),
             ),
           ],
